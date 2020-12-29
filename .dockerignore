@@ -1,0 +1,10 @@
+node_modules/
+build/
+
+.dockerignore
+.eslintcache
+.gitignore
+Dockerfile.dev
+
+package-lock.json
+README.md

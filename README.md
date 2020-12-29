@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+## React App That Reloads In Browser And Reruns Tests When App Code or Test Code
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The `src` and `public` folders are not copied over from the host machine into the docker image.
+Instead volumes are used to create symbolic links back from the image into the host machine.
+In this way, the user can make changes on the host machine and see the changes made in the browser.
+The user can also make changes on the host machine and see the unit tests rerun in the container.
 
-## Available Scripts
+## DOCKERFILE
 
-In the project directory, you can run:
+### `How to build using this Dockerfile.dev file`
 
-### `npm start`
+```sh
+$ docker build . -f Dockerfile.dev -t debugme/dgta
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### `How to run react application in hot reloading mode using Dockerfile.dev file`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```sh
+$ docker run -it -p 3001:3000 -v /app/node_modules -v $(pwd)/public:/app/public -v $(pwd)/src:/app/src debugme/dgta
+```
 
-### `npm test`
+### `How to connect shell in a new docker container`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```sh
+$ docker run -it debugme/dgta sh
+```
 
-### `npm run build`
+### `How to connect to react application in docker container`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```sh
+Open up http://localhost:3001 in the browser on your machine
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `How to run unit tests in hot reloading mode in new docker container`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```sh
+$ docker run -it -v $(pwd)/src:/app/src debugme/dgta npm run test
+```
 
-### `npm run eject`
+## DOCKER-COMPOSE FILE
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### `How to build your docker image`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```sh
+$ docker-compose build
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### `How to start up your docker image as a docker container`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```sh
+$ docker-compose up
+```
 
-## Learn More
+### `How to shut down your running docker container`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```sh
+$ docker-compose down
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### `How to build and start-up your docker image as a docker container`$
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```sh
+$ docker-compose up --build
+```
