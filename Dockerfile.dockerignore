@@ -1,0 +1,13 @@
+build/
+node_modules/
+
+.eslintcache
+.gitignore
+docker-compose.yaml
+Dockerfile
+Dockerfile.dev
+Dockerfile.dev.dockerignore
+Dockerfile.dockerignore
+package-lock.json
+README.md
+

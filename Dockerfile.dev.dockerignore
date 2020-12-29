@@ -1,6 +1,6 @@
 node_modules/
 build/
-
+asad/
 .dockerignore
 .eslintcache
 .gitignore

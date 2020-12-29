@@ -1,9 +1,15 @@
-## React App That Reloads In Browser And Reruns Tests When App Code or Test Code
+# React App That Reloads In Browser And Reruns Tests When App Code or Test Code
 
-The `src` and `public` folders are not copied over from the host machine into the docker image.
+## Notable Points
+
+(1) The `src` and `public` folders are not copied over from the host machine into the docker image.
 Instead volumes are used to create symbolic links back from the image into the host machine.
 In this way, the user can make changes on the host machine and see the changes made in the browser.
 The user can also make changes on the host machine and see the unit tests rerun in the container.
+
+(2) We define two docker ignore files, one for development (`Dockerfile.dev.dockerignore`) and one for production (`Dockerfile.dockerignore`) These are used to specify what folders/files should be ignored when using either the development or production dockerfiles.
+
+# `DEVELOPMENT`
 
 ## DOCKERFILE
 
@@ -22,7 +28,7 @@ $ docker run -it -p 3001:3000 -v /app/node_modules -v $(pwd)/public:/app/public 
 ### `How to connect shell in a new docker container`
 
 ```sh
-$ docker run -it debugme/dgta sh
+$ docker run -it -v $(pwd)/src:/app/src debugme/dgta sh
 ```
 
 ### `How to connect to react application in docker container`
@@ -57,8 +63,22 @@ $ docker-compose up
 $ docker-compose down
 ```
 
-### `How to build and start-up your docker image as a docker container`$
+### `How to build and start-up your docker image as a docker container`
 
 ```sh
 $ docker-compose up --build
+```
+
+# `PRODUCTION`
+
+# `How to build a production image using a multi-stage dockerfile`
+
+```sh
+$ docker build . -f Dockerfile -t debugme/dgta
+```
+
+# `How to run a production image using a multi-stage dockerfile`
+
+```sh
+$ docker run -it -p 8081:80 debugme/dgta
 ```
