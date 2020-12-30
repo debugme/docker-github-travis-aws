@@ -1,4 +1,4 @@
-https://travis-ci.com/debugme/docker-github-travis-aws.svg?branch=master
+<img src="https://travis-ci.com/debugme/docker-github-travis-aws.svg?branch=master"/>
 
 # React App That Reloads In Browser And Reruns Tests When App Code or Test Code
 
