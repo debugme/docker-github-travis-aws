@@ -1,3 +1,5 @@
+https://travis-ci.com/debugme/docker-github-travis-aws.svg?branch=master
+
 # React App That Reloads In Browser And Reruns Tests When App Code or Test Code
 
 ## Notable Points
@@ -71,13 +73,13 @@ $ docker-compose up --build
 
 # `PRODUCTION`
 
-# `How to build a production image using a multi-stage dockerfile`
+### `How to build a production image using a multi-stage dockerfile`
 
 ```sh
 $ docker build . -f Dockerfile -t debugme/dgta
 ```
 
-# `How to run a production image using a multi-stage dockerfile`
+### `How to run a production image using a multi-stage dockerfile`
 
 ```sh
 $ docker run -it -p 8081:80 debugme/dgta
