@@ -10,7 +10,7 @@ script:
 
 deploy:
   provider: elasticbeanstalk
-  region: us-east-1"
+  region: us-east-1
   app: docker-github-travis-aws
   env: DockerGithubTravisAws-env
   bucket_name: elasticbeanstalk-us-east-1-299685737057
